@@ -1,10 +1,10 @@
 # Movie Success Prediction Using ML and AI
 
-An exploratory data analysis and machine-learning project that uses movie metadata to classify films into three IMDb-score-based success categories: **Flop**, **Average**, and **Hit**. The initial notebook examines data quality and distributions, removes duplicate rows, and prepares model features and labels.
+An in-progress movie success prediction project using movie metadata and IMDb-score-based categories: **Flop**, **Average**, and **Hit**. **Phase 1** performs exploratory data analysis, checks data quality, removes duplicates, and prepares features and labels. It does not yet train or evaluate a prediction model.
 
 ## Dataset
 
-Place `movie_metadata.csv` in the `dataset/` directory before running the notebook. The dataset is not included in this repository; obtain it from its original source and follow that source's terms.
+The `dataset/movie_metadata.csv` file is included in this repository. It is the IMDb 5000 Movie Dataset published on [Kaggle by Yueming](https://www.kaggle.com/datasets/carolzhangdc/imdb-5000-movie-dataset). The Kaggle listing identifies the database license as [Open Data Commons Open Database License (ODbL) 1.0](https://opendatacommons.org/licenses/odbl/1-0/). Please review the source listing and license for attribution, share-alike, and any rights applying to the individual contents.
 
 ## Getting started
 
