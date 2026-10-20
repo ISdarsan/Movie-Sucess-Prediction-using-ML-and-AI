@@ -1,6 +1,6 @@
 # Movie Success Prediction Using ML and AI
 
-An in-progress movie success prediction project using movie metadata and IMDb-score-based categories: **Flop**, **Average**, and **Hit**. **Phase 1** performs exploratory data analysis, checks data quality, removes duplicates, and prepares features and labels. It does not yet train or evaluate a prediction model.
+An in-progress movie success prediction project using movie metadata and IMDb-score-based categories: **Flop**, **Average**, and **Hit**. The notebook explores the data, preprocesses features, and compares baseline, linear, ensemble, and boosting classifiers using classification metrics and confusion matrices.
 
 ## Dataset
 
@@ -11,7 +11,7 @@ The `dataset/movie_metadata.csv` file is included in this repository. It is the 
 Install the notebook dependencies:
 
 ```bash
-python -m pip install pandas numpy matplotlib seaborn jupyter
+python -m pip install pandas numpy matplotlib seaborn jupyter scikit-learn imbalanced-learn xgboost catboost lightgbm
 ```
 
 Open and run `PHASE1.ipynb` from the project root:
