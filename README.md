@@ -24,6 +24,6 @@ The notebook assigns labels from `imdb_score` using these ranges:
 
 - **Flop:** scores from 0 up to (but not including) 3
 - **Average:** scores from 3 up to (but not including) 6
-- **Hit:** scores from 6 up to 10
+- **Hit:** scores from 6 up to (but not including) 10
 
 The IMDb score and other identifier/text fields are excluded from the initial feature set.
