@@ -1,0 +1,582 @@
+{
+  "generated_at": "2026-10-26T14:18:56+00:00",
+  "evaluation": {
+    "split": "Stratified 80/20 train/test split, random_state=42, after exact-duplicate removal (4,998 rows).",
+    "train_size": 3998,
+    "test_size": 1000,
+    "train_class_counts": {
+      "Flop": 33,
+      "Average": 1121,
+      "Hit": 2844
+    },
+    "test_class_counts": {
+      "Flop": 8,
+      "Average": 280,
+      "Hit": 712
+    },
+    "labels": [
+      "Flop",
+      "Average",
+      "Hit"
+    ],
+    "source": "Random Forest evaluated live from the saved pipeline; other models re-fitted from notebook definitions."
+  },
+  "selected_model": {
+    "name": "Random Forest (tuned)",
+    "params": {
+      "n_estimators": 400,
+      "max_depth": null,
+      "min_samples_leaf": 1,
+      "min_samples_split": 2,
+      "max_features": "sqrt",
+      "class_weight": "balanced",
+      "criterion": "gini",
+      "bootstrap": true,
+      "random_state": 42
+    },
+    "n_features_in": 20,
+    "n_transformed_features": 956,
+    "tuning": {
+      "method": "GridSearchCV, 5-fold stratified, scoring = macro F1, 8 candidates (40 fits) on the training split",
+      "grid": {
+        "n_estimators": [
+          200,
+          400
+        ],
+        "max_depth": [
+          null,
+          20
+        ],
+        "min_samples_leaf": [
+          1,
+          3
+        ],
+        "max_features": [
+          "sqrt"
+        ]
+      },
+      "best_cv_macro_f1": 0.522,
+      "origin": "recorded from PHASE1.ipynb cell 87"
+    }
+  },
+  "held_out": {
+    "name": "Random Forest (tuned, final)",
+    "family": "saved model",
+    "note": "Loaded from final_movie_classifier.joblib; not retrained.",
+    "selected": true,
+    "matches_notebook": true,
+    "accuracy": 0.804,
+    "balanced_accuracy": 0.5194,
+    "macro_f1": 0.5119,
+    "per_class": {
+      "Flop": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 8
+      },
+      "Average": {
+        "precision": 0.6387,
+        "recall": 0.7071,
+        "f1-score": 0.6712,
+        "support": 280
+      },
+      "Hit": {
+        "precision": 0.8783,
+        "recall": 0.8511,
+        "f1-score": 0.8645,
+        "support": 712
+      }
+    },
+    "confusion_matrix": [
+      [
+        0,
+        6,
+        2
+      ],
+      [
+        0,
+        198,
+        82
+      ],
+      [
+        0,
+        106,
+        606
+      ]
+    ]
+  },
+  "comparison": [
+    {
+      "name": "Random Forest (tuned, final)",
+      "family": "saved model",
+      "note": "Loaded from final_movie_classifier.joblib; not retrained.",
+      "selected": true,
+      "matches_notebook": true,
+      "accuracy": 0.804,
+      "balanced_accuracy": 0.5194,
+      "macro_f1": 0.5119,
+      "per_class": {
+        "Flop": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 8
+        },
+        "Average": {
+          "precision": 0.6387,
+          "recall": 0.7071,
+          "f1-score": 0.6712,
+          "support": 280
+        },
+        "Hit": {
+          "precision": 0.8783,
+          "recall": 0.8511,
+          "f1-score": 0.8645,
+          "support": 712
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          6,
+          2
+        ],
+        [
+          0,
+          198,
+          82
+        ],
+        [
+          0,
+          106,
+          606
+        ]
+      ]
+    },
+    {
+      "name": "Dummy baseline",
+      "family": "baseline",
+      "note": "Always predicts the most frequent class.",
+      "selected": false,
+      "matches_notebook": null,
+      "accuracy": 0.712,
+      "balanced_accuracy": 0.3333,
+      "macro_f1": 0.2773,
+      "per_class": {
+        "Flop": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 8
+        },
+        "Average": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 280
+        },
+        "Hit": {
+          "precision": 0.712,
+          "recall": 1.0,
+          "f1-score": 0.8318,
+          "support": 712
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          280
+        ],
+        [
+          0,
+          0,
+          712
+        ]
+      ]
+    },
+    {
+      "name": "Logistic Regression",
+      "family": "linear",
+      "note": "class_weight='balanced'; scaled numeric inputs.",
+      "selected": false,
+      "matches_notebook": true,
+      "accuracy": 0.733,
+      "balanced_accuracy": 0.5722,
+      "macro_f1": 0.5047,
+      "per_class": {
+        "Flop": {
+          "precision": 0.0417,
+          "recall": 0.25,
+          "f1-score": 0.0714,
+          "support": 8
+        },
+        "Average": {
+          "precision": 0.5577,
+          "recall": 0.725,
+          "f1-score": 0.6304,
+          "support": 280
+        },
+        "Hit": {
+          "precision": 0.898,
+          "recall": 0.7416,
+          "f1-score": 0.8123,
+          "support": 712
+        }
+      },
+      "confusion_matrix": [
+        [
+          2,
+          6,
+          0
+        ],
+        [
+          17,
+          203,
+          60
+        ],
+        [
+          29,
+          155,
+          528
+        ]
+      ]
+    },
+    {
+      "name": "Extra Trees",
+      "family": "ensemble",
+      "note": "300 trees, balanced class weights.",
+      "selected": false,
+      "matches_notebook": null,
+      "accuracy": 0.794,
+      "balanced_accuracy": 0.4606,
+      "macro_f1": 0.4729,
+      "per_class": {
+        "Flop": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 8
+        },
+        "Average": {
+          "precision": 0.7321,
+          "recall": 0.4393,
+          "f1-score": 0.5491,
+          "support": 280
+        },
+        "Hit": {
+          "precision": 0.8075,
+          "recall": 0.9424,
+          "f1-score": 0.8697,
+          "support": 712
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          5,
+          3
+        ],
+        [
+          0,
+          123,
+          157
+        ],
+        [
+          1,
+          40,
+          671
+        ]
+      ]
+    },
+    {
+      "name": "HistGradientBoosting",
+      "family": "boosting",
+      "note": "No class weighting.",
+      "selected": false,
+      "matches_notebook": true,
+      "accuracy": 0.836,
+      "balanced_accuracy": 0.5207,
+      "macro_f1": 0.527,
+      "per_class": {
+        "Flop": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 8
+        },
+        "Average": {
+          "precision": 0.7458,
+          "recall": 0.6393,
+          "f1-score": 0.6885,
+          "support": 280
+        },
+        "Hit": {
+          "precision": 0.8645,
+          "recall": 0.9228,
+          "f1-score": 0.8927,
+          "support": 712
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          6,
+          2
+        ],
+        [
+          0,
+          179,
+          101
+        ],
+        [
+          0,
+          55,
+          657
+        ]
+      ]
+    },
+    {
+      "name": "HistGradientBoosting (balanced)",
+      "family": "boosting",
+      "note": "Balanced sample weights.",
+      "selected": false,
+      "matches_notebook": true,
+      "accuracy": 0.815,
+      "balanced_accuracy": 0.5304,
+      "macro_f1": 0.5214,
+      "per_class": {
+        "Flop": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 8
+        },
+        "Average": {
+          "precision": 0.654,
+          "recall": 0.7357,
+          "f1-score": 0.6924,
+          "support": 280
+        },
+        "Hit": {
+          "precision": 0.8891,
+          "recall": 0.8553,
+          "f1-score": 0.8719,
+          "support": 712
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          6,
+          2
+        ],
+        [
+          0,
+          206,
+          74
+        ],
+        [
+          0,
+          103,
+          609
+        ]
+      ]
+    },
+    {
+      "name": "XGBoost",
+      "family": "boosting",
+      "note": "300 trees, depth 4.",
+      "selected": false,
+      "matches_notebook": true,
+      "accuracy": 0.825,
+      "balanced_accuracy": 0.5083,
+      "macro_f1": 0.5155,
+      "per_class": {
+        "Flop": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 8
+        },
+        "Average": {
+          "precision": 0.7284,
+          "recall": 0.6036,
+          "f1-score": 0.6602,
+          "support": 280
+        },
+        "Hit": {
+          "precision": 0.8542,
+          "recall": 0.9213,
+          "f1-score": 0.8865,
+          "support": 712
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          7,
+          1
+        ],
+        [
+          0,
+          169,
+          111
+        ],
+        [
+          0,
+          56,
+          656
+        ]
+      ]
+    },
+    {
+      "name": "CatBoost",
+      "family": "boosting",
+      "note": "500 iterations, depth 6.",
+      "selected": false,
+      "matches_notebook": true,
+      "accuracy": 0.812,
+      "balanced_accuracy": 0.4842,
+      "macro_f1": 0.4964,
+      "per_class": {
+        "Flop": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 8
+        },
+        "Average": {
+          "precision": 0.75,
+          "recall": 0.5143,
+          "f1-score": 0.6102,
+          "support": 280
+        },
+        "Hit": {
+          "precision": 0.8267,
+          "recall": 0.9382,
+          "f1-score": 0.8789,
+          "support": 712
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          4,
+          4
+        ],
+        [
+          0,
+          144,
+          136
+        ],
+        [
+          0,
+          44,
+          668
+        ]
+      ]
+    },
+    {
+      "name": "LightGBM (balanced)",
+      "family": "boosting",
+      "note": "Balanced class weights.",
+      "selected": false,
+      "matches_notebook": true,
+      "accuracy": 0.806,
+      "balanced_accuracy": 0.5312,
+      "macro_f1": 0.5173,
+      "per_class": {
+        "Flop": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 8
+        },
+        "Average": {
+          "precision": 0.6283,
+          "recall": 0.7607,
+          "f1-score": 0.6882,
+          "support": 280
+        },
+        "Hit": {
+          "precision": 0.8971,
+          "recall": 0.8329,
+          "f1-score": 0.8638,
+          "support": 712
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          7,
+          1
+        ],
+        [
+          0,
+          213,
+          67
+        ],
+        [
+          0,
+          119,
+          593
+        ]
+      ]
+    }
+  ],
+  "cross_validation": {
+    "origin": "recorded from PHASE1.ipynb (cells 61 and 92); not recomputed here",
+    "five_fold_train": {
+      "protocol": "5-fold stratified CV on the training split (default 300-tree Random Forest, not the tuned model)",
+      "rows": [
+        {
+          "name": "Random Forest (300 trees)",
+          "accuracy": 0.7906,
+          "balanced_accuracy": 0.5206,
+          "macro_f1": 0.5208,
+          "macro_f1_std": 0.0416
+        },
+        {
+          "name": "Logistic Regression",
+          "accuracy": 0.7379,
+          "balanced_accuracy": 0.5852,
+          "macro_f1": 0.5141,
+          "macro_f1_std": 0.022
+        },
+        {
+          "name": "HistGradientBoosting",
+          "accuracy": 0.8157,
+          "balanced_accuracy": 0.5065,
+          "macro_f1": 0.511,
+          "macro_f1_std": 0.0033
+        }
+      ]
+    },
+    "repeated": {
+      "protocol": "5-fold x 3 repeats stratified CV on the training split",
+      "rows": [
+        {
+          "name": "LightGBM (balanced)",
+          "macro_f1": 0.5399,
+          "macro_f1_std": 0.0443,
+          "balanced_accuracy": 0.5403,
+          "balanced_accuracy_std": 0.0289
+        },
+        {
+          "name": "HistGradientBoosting (balanced)",
+          "macro_f1": 0.5301,
+          "macro_f1_std": 0.0458,
+          "balanced_accuracy": 0.5292,
+          "balanced_accuracy_std": 0.0313
+        }
+      ]
+    }
+  }
+}

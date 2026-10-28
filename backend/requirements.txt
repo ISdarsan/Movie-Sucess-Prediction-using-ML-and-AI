@@ -1,0 +1,19 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+pandas>=2.2
+numpy>=1.26
+scikit-learn==1.9.1   # must match the version that serialized pre_release_movie_classifier.joblib
+joblib>=1.4
+lightgbm>=4.0         # the saved pipeline's classifier
+# study / report / notebook only (not needed to serve the API):
+shap>=0.50
+imbalanced-learn>=0.12
+nbformat
+nbclient
+# (xgboost / catboost are used only by the older exploratory notebook cells)
+xgboost
+catboost
+# tests:
+pytest
+httpx

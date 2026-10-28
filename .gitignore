@@ -1,0 +1,9 @@
+
+# FRAME app
+node_modules/
+frontend/dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+.venv/

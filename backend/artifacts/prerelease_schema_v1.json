@@ -1,0 +1,321 @@
+{
+  "model_file": "pre_release_movie_classifier.joblib",
+  "classes": [
+    "Flop",
+    "Average",
+    "Hit"
+  ],
+  "inputs": [
+    "budget",
+    "duration",
+    "title_year",
+    "aspect_ratio",
+    "country",
+    "language",
+    "content_rating",
+    "color",
+    "genres"
+  ],
+  "use_people": false,
+  "numeric": {
+    "budget": {
+      "min": 218.0,
+      "max": 12215500000.0,
+      "p01": 60000.0,
+      "p99": 200000000.0,
+      "median": 19500000.0,
+      "missing_pct": 9.9
+    },
+    "duration": {
+      "min": 7.0,
+      "max": 511.0,
+      "p01": 43.22,
+      "p99": 187.77999999999975,
+      "median": 103.0,
+      "missing_pct": 0.3
+    },
+    "title_year": {
+      "min": 1920.0,
+      "max": 2016.0,
+      "p01": 1952.0,
+      "p99": 2016.0,
+      "median": 2005.0,
+      "missing_pct": 2.1
+    },
+    "aspect_ratio": {
+      "min": 1.18,
+      "max": 16.0,
+      "p01": 1.33,
+      "p99": 4.0,
+      "median": 2.35,
+      "missing_pct": 6.7
+    }
+  },
+  "categorical": {
+    "country": [
+      "Afghanistan",
+      "Argentina",
+      "Aruba",
+      "Australia",
+      "Bahamas",
+      "Belgium",
+      "Brazil",
+      "Bulgaria",
+      "Cameroon",
+      "Canada",
+      "Chile",
+      "China",
+      "Colombia",
+      "Czech Republic",
+      "Denmark",
+      "Egypt",
+      "Finland",
+      "France",
+      "Georgia",
+      "Germany",
+      "Greece",
+      "Hong Kong",
+      "Hungary",
+      "Iceland",
+      "India",
+      "Indonesia",
+      "Iran",
+      "Ireland",
+      "Israel",
+      "Italy",
+      "Japan",
+      "Kenya",
+      "Kyrgyzstan",
+      "Libya",
+      "Mexico",
+      "Netherlands",
+      "New Line",
+      "New Zealand",
+      "Nigeria",
+      "Norway",
+      "Official site",
+      "Pakistan",
+      "Panama",
+      "Peru",
+      "Philippines",
+      "Poland",
+      "Romania",
+      "Russia",
+      "Slovakia",
+      "Slovenia",
+      "South Africa",
+      "South Korea",
+      "Soviet Union",
+      "Spain",
+      "Sweden",
+      "Switzerland",
+      "Taiwan",
+      "Thailand",
+      "Turkey",
+      "UK",
+      "USA",
+      "United Arab Emirates",
+      "West Germany"
+    ],
+    "language": [
+      "Aboriginal",
+      "Arabic",
+      "Aramaic",
+      "Bosnian",
+      "Cantonese",
+      "Chinese",
+      "Czech",
+      "Danish",
+      "Dari",
+      "Dutch",
+      "Dzongkha",
+      "English",
+      "Filipino",
+      "French",
+      "German",
+      "Greek",
+      "Hebrew",
+      "Hindi",
+      "Hungarian",
+      "Icelandic",
+      "Indonesian",
+      "Italian",
+      "Japanese",
+      "Kannada",
+      "Kazakh",
+      "Korean",
+      "Mandarin",
+      "Norwegian",
+      "Panjabi",
+      "Persian",
+      "Polish",
+      "Portuguese",
+      "Romanian",
+      "Russian",
+      "Slovenian",
+      "Spanish",
+      "Swahili",
+      "Swedish",
+      "Tamil",
+      "Telugu",
+      "Thai",
+      "Urdu",
+      "Vietnamese",
+      "Zulu"
+    ],
+    "content_rating": [
+      "Approved",
+      "G",
+      "GP",
+      "M",
+      "NC-17",
+      "Not Rated",
+      "PG",
+      "PG-13",
+      "Passed",
+      "R",
+      "TV-14",
+      "TV-G",
+      "TV-MA",
+      "TV-PG",
+      "TV-Y",
+      "TV-Y7",
+      "Unrated",
+      "X"
+    ],
+    "color": [
+      " Black and White",
+      "Color"
+    ]
+  },
+  "genres": [
+    "Action",
+    "Adventure",
+    "Animation",
+    "Biography",
+    "Comedy",
+    "Crime",
+    "Documentary",
+    "Drama",
+    "Family",
+    "Fantasy",
+    "Film-Noir",
+    "Game-Show",
+    "History",
+    "Horror",
+    "Music",
+    "Musical",
+    "Mystery",
+    "News",
+    "Reality-TV",
+    "Romance",
+    "Sci-Fi",
+    "Short",
+    "Sport",
+    "Thriller",
+    "War",
+    "Western"
+  ],
+  "people_columns": [],
+  "defaults_when_blank": {
+    "numeric_median": {
+      "budget": 19500000.0,
+      "duration": 103.0,
+      "title_year": 2005.0,
+      "aspect_ratio": 2.35
+    },
+    "categorical": "Unknown (own category)"
+  },
+  "excluded": [
+    {
+      "column": "gross",
+      "timing": "after_release",
+      "used": "no",
+      "reason": "Box-office revenue exists only after release."
+    },
+    {
+      "column": "num_voted_users",
+      "timing": "after_release",
+      "used": "no",
+      "reason": "IMDb votes accumulate after release (and track the target: Spearman 0.39 with IMDb score)."
+    },
+    {
+      "column": "num_user_for_reviews",
+      "timing": "after_release",
+      "used": "no",
+      "reason": "User reviews are written after release."
+    },
+    {
+      "column": "num_critic_for_reviews",
+      "timing": "after_release",
+      "used": "no",
+      "reason": "Critic reviews are written after release."
+    },
+    {
+      "column": "movie_facebook_likes",
+      "timing": "after_release",
+      "used": "no",
+      "reason": "Social engagement with the film; collected in 2016, long after release."
+    },
+    {
+      "column": "director_facebook_likes",
+      "timing": "maybe_before_release",
+      "used": "no",
+      "reason": "Popularity snapshot collected once (2016); its timing relative to each film cannot be established, and it can reflect that film's success."
+    },
+    {
+      "column": "actor_1_facebook_likes",
+      "timing": "maybe_before_release",
+      "used": "no",
+      "reason": "Same as above: a 2016 snapshot, not a pre-release value."
+    },
+    {
+      "column": "actor_2_facebook_likes",
+      "timing": "maybe_before_release",
+      "used": "no",
+      "reason": "Same as above."
+    },
+    {
+      "column": "actor_3_facebook_likes",
+      "timing": "maybe_before_release",
+      "used": "no",
+      "reason": "Same as above."
+    },
+    {
+      "column": "cast_total_facebook_likes",
+      "timing": "maybe_before_release",
+      "used": "no",
+      "reason": "Same as above; aggregate of the cast's 2016 popularity."
+    },
+    {
+      "column": "facenumber_in_poster",
+      "timing": "maybe_before_release",
+      "used": "no",
+      "reason": "Poster artwork is a marketing asset whose timing is not recorded; weak signal, so excluded rather than assumed safe."
+    },
+    {
+      "column": "plot_keywords",
+      "timing": "after_release",
+      "used": "no",
+      "reason": "Keywords are user-generated on IMDb after release."
+    },
+    {
+      "column": "movie_title",
+      "timing": "identifier",
+      "used": "no",
+      "reason": "Identifier. Used only to find near-duplicate rows."
+    },
+    {
+      "column": "movie_imdb_link",
+      "timing": "identifier",
+      "used": "no",
+      "reason": "Identifier."
+    },
+    {
+      "column": "imdb_score",
+      "timing": "target",
+      "used": "no",
+      "reason": "Used ONLY to create the Hit/Average/Flop label. Never an input."
+    }
+  ]
+}
