@@ -67,7 +67,7 @@ A six-page interface over the study: Overview, Predictor, Model performance, Exp
 cd frontend && npm install && npm run dev
 ```
 
-Production check: `cd frontend && npm run build && npm run preview` (port 4173). Serving the build for real (compression, caching, SPA fallback, `/api` proxy) is covered in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md); `vite preview` does not compress, so Lighthouse scores against it are pessimistic.
+Production check: `cd frontend && npm run build && npm run preview` (port 4173). Deploying for real (architecture, environment variables, start commands, compression, caching, SPA fallback, `/api` proxy, health checks) is covered in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md); install only `backend/requirements-api.txt` on a production host, and check a deployment with `python deploy/verify_deployment.py <site-url>`; `vite preview` does not compress, so Lighthouse scores against it are pessimistic.
 
 ### Tests
 

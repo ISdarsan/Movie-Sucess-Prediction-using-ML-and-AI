@@ -1,3 +1,4 @@
+# Full development environment (study, notebook, tests). To SERVE the API in production, install requirements-api.txt instead.
 fastapi>=0.115
 uvicorn[standard]>=0.30
 pydantic>=2.7
@@ -5,7 +6,7 @@ pandas>=2.2
 numpy>=1.26
 scikit-learn==1.9.1   # must match the version that serialized pre_release_movie_classifier.joblib
 joblib>=1.4
-lightgbm>=4.0         # the saved pipeline's classifier
+lightgbm>=4.0         # only for the rollback artifact (v1) and the study; the production Random Forest does not need it
 # study / report / notebook only (not needed to serve the API):
 shap>=0.50
 imbalanced-learn>=0.12

@@ -1,0 +1,11 @@
+# Runtime dependencies for SERVING the API only (what a production host needs).
+# Versions are the ones this project was verified against (Python 3.13). scikit-learn must match the version
+# that serialized pre_release_movie_classifier.joblib. The study / notebook / test tooling lives in requirements.txt.
+# Verified: the API runs every endpoint with lightgbm, shap, imbalanced-learn, xgboost, catboost and nbformat absent.
+fastapi==0.162.0
+uvicorn[standard]==0.54.0
+pydantic==2.14.1
+pandas==3.0.6
+numpy==2.5.4
+scikit-learn==1.9.1
+joblib==1.6.0
