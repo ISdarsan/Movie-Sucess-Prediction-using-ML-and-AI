@@ -50,7 +50,22 @@ The original notebook cells classify films with columns that only exist *after* 
 
 ## FRAME / Film Intelligence web app
 
-A six-page interface over the study: Overview, Predictor, Model performance, Explainability, Explore movies, Methodology.
+An eight-page interface over the study: Overview, Predictor, Model performance, Explainability, Explore movies, AI Movie Researcher, AI Assistant, Methodology.
+
+- **AI Movie Researcher** (`backend/agent`) — an agent that researches a film (Wikipedia, via a local Ollama model), runs the pre-release model on it and reports risks. It never changes a prediction.
+- **AI Assistant** (`backend/gemini`) — a Google Gemini chat. In *general* mode it answers cinema and data-science questions; in *movie analysis* mode it explains one stored Researcher analysis. It needs `GEMINI_API_KEY` and `GEMINI_MODEL` in a git-ignored `.env` (copy `.env.example`); the key stays on the backend.
+
+### Screenshots
+
+| Overview | Predictor |
+|---|---|
+| ![Overview](docs/screenshots/overview.png) | ![Predictor](docs/screenshots/predictor.png) |
+| **Model performance** | **Explainability** |
+| ![Model performance](docs/screenshots/performance.png) | ![Explainability](docs/screenshots/explainability.png) |
+| **Explore movies** | **AI Movie Researcher** |
+| ![Explore movies](docs/screenshots/explore.png) | ![AI Movie Researcher](docs/screenshots/researcher.png) |
+| **AI Assistant** | |
+| ![AI Assistant](docs/screenshots/assistant.png) | |
 
 - `backend/app` — FastAPI service. Loads the pre-release pipeline once at start-up and **verifies its input columns against `backend/artifacts/prerelease_schema.json`** (it refuses to serve on a mismatch). Requests containing a post-release column are rejected.
 - `backend/ml` — the study (feature audit, cleaning, transformers, experiments, reports).
