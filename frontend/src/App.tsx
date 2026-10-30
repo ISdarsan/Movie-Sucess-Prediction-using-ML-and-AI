@@ -10,6 +10,8 @@ const Performance = lazy(() => import('./pages/Performance'))
 const Explain = lazy(() => import('./pages/Explain'))
 const Explore = lazy(() => import('./pages/Explore'))
 const About = lazy(() => import('./pages/About'))
+const Researcher = lazy(() => import('./pages/Researcher'))
+const Assistant = lazy(() => import('./pages/Assistant'))
 
 function NotFound() {
   return <EmptyState title="Page not found" message="That route does not exist." action={<Link to="/" className="text-accent underline underline-offset-4">Back to Overview</Link>} />
@@ -28,6 +30,8 @@ export default function App() {
               <Route path="performance" element={<Performance />} />
               <Route path="explain" element={<Explain />} />
               <Route path="explore" element={<Explore />} />
+              <Route path="researcher" element={<Researcher />} />
+              <Route path="assistant" element={<Assistant />} />
               <Route path="about" element={<About />} />
               <Route path="*" element={<NotFound />} />
             </Route>

@@ -1,4 +1,4 @@
-import { BookOpen, Crosshair, Film, LayoutGrid, Lightbulb, Menu, ScanLine, X } from 'lucide-react'
+import { BookOpen, Bot, Crosshair, Film, LayoutGrid, Lightbulb, Menu, MessagesSquare, ScanLine, X } from 'lucide-react'
 import { AnimatePresence, motion, useScroll, useSpring } from 'motion/react'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
@@ -14,6 +14,8 @@ export const NAV: NavItem[] = [
   { to: '/performance', label: 'Model performance', short: 'Performance', icon: ScanLine },
   { to: '/explain', label: 'Explainability', short: 'Explain', icon: Lightbulb },
   { to: '/explore', label: 'Explore movies', short: 'Explore', icon: Film },
+  { to: '/researcher', label: 'AI Movie Researcher', short: 'Researcher', icon: Bot },
+  { to: '/assistant', label: 'AI Assistant', short: 'Assistant', icon: MessagesSquare },
   { to: '/about', label: 'Methodology', short: 'Method', icon: BookOpen },
 ]
 
@@ -94,13 +96,13 @@ export function AppShell() {
           <nav aria-label="Primary" className="hidden items-center gap-0.5 md:flex">
             {NAV.map(({ to, label, short, icon: Icon, end }) => (
               <NavLink key={to} to={to} end={end} title={label}
-                className={({ isActive }) => cx('relative flex min-h-10 items-center gap-2 rounded-full px-3.5 text-[0.85rem] font-medium transition-colors duration-200 lg:px-4', isActive ? 'text-[#12082a]' : 'text-fg2 hover:text-fg')}>
+                className={({ isActive }) => cx('relative flex min-h-10 items-center gap-2 rounded-full px-3.5 text-[0.85rem] font-medium transition-colors duration-200 xl:px-4', isActive ? 'text-[#12082a]' : 'text-fg2 hover:text-fg')}>
                 {({ isActive }) => (
                   <>
                     {isActive && <motion.span layoutId="nav-pill" className="absolute inset-0 rounded-full bg-[image:var(--grad-brand)] shadow-[0_6px_22px_-6px_rgb(255_79_163/.8)]" transition={{ type: 'spring', stiffness: 440, damping: 36 }} />}
                     <Icon size={16} aria-hidden className="relative shrink-0" />
-                    <span className="relative hidden lg:inline">{short}</span>
-                    <span className="sr-only lg:hidden">{label}</span>
+                    <span className="relative hidden xl:inline">{short}</span>
+                    <span className="sr-only xl:hidden">{label}</span>
                   </>
                 )}
               </NavLink>
@@ -108,8 +110,8 @@ export function AppShell() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <div className="hidden xl:block"><ModelStatus /></div>
-            <div className="hidden md:block xl:hidden"><ModelStatus compact /></div>
+            <div className="hidden min-[1440px]:block"><ModelStatus /></div>
+            <div className="hidden md:block min-[1440px]:hidden"><ModelStatus compact /></div>
             <span className="font-mono text-[0.72rem] uppercase tracking-wider text-fg3 md:hidden">{current?.short}</span>
             <button ref={menuBtn} onClick={() => setOpen(true)} aria-label="Open navigation" aria-expanded={open} aria-controls="mobile-nav"
               className="flex h-11 w-11 items-center justify-center rounded-full text-fg2 hover:bg-white/10 hover:text-fg md:hidden"><Menu size={22} aria-hidden /></button>

@@ -2,7 +2,7 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig, loadEnv, type Plugin } from 'vite'
 
-const ROUTE_CHUNKS: Record<string, string> = { '/': 'Overview', '/predict': 'Predictor', '/performance': 'Performance', '/explain': 'Explain', '/explore': 'Explore', '/about': 'About' }
+const ROUTE_CHUNKS: Record<string, string> = { '/': 'Overview', '/predict': 'Predictor', '/performance': 'Performance', '/explain': 'Explain', '/explore': 'Explore', '/researcher': 'Researcher', '/assistant': 'Assistant', '/about': 'About' }
 
 /** Route pages are lazy chunks, so the browser would only request one after the entry bundle has run. This adds a tiny inline script that
  *  issues modulepreload for the current route's chunk (and its static dependencies) while the entry is still downloading. */

@@ -7,6 +7,9 @@
 """
 from __future__ import annotations
 
+import re
+import unicodedata
+
 import numpy as np
 import pandas as pd
 
@@ -33,8 +36,28 @@ def _stage(label: str, df: pd.DataFrame) -> dict:
     }
 
 
-def cohort(genres: list[str], country: str | None, content_rating: str | None, year: int | None, duration: float | None) -> dict:
+def _norm_title(t) -> str:
+    return re.sub(r"\s+", " ", unicodedata.normalize("NFKC", str(t))).strip().casefold() if isinstance(t, str) else ""
+
+
+def self_match(df: pd.DataFrame, title: str | None, year: int | None) -> pd.Series:
+    """Rows that ARE the queried film: same normalised title AND same release year. Needs both, so a remake or a same-named film from
+    another year is never removed, and nothing is removed when the title or year is unknown. (The dataset keeps one row per title+year.)"""
+    none = pd.Series(False, index=df.index)
+    key = _norm_title(title)
+    if not key or year is None:
+        return none
+    return (df["title"].map(_norm_title) == key) & (df["year"] == year)
+
+
+def cohort(genres: list[str], country: str | None, content_rating: str | None, year: int | None, duration: float | None,
+           title: str | None = None) -> dict:
+    """`title` (optional): when it identifies a film in the dataset (title + year), that film is left out of every count and statistic, so a
+    film already in the dataset is never part of its own evidence. Without a title the behaviour is unchanged."""
     df = movies()
+    me = self_match(df, title, year)
+    if me.any():
+        df = df[~me]
     cur = df
     stages = [_stage("All films", cur)]
     if genres:
@@ -53,13 +76,16 @@ def cohort(genres: list[str], country: str | None, content_rating: str | None, y
         cur = cur[(cur["duration"] >= duration - 20) & (cur["duration"] <= duration + 20)]
         stages.append(_stage(f"{int(duration - 20)}–{int(duration + 20)} min", cur))
     final = stages[-1]
-    return {
+    out = {
         "stages": stages,
         "final": final,
         "thin": 0 < final["n"] < 30,
         "empty": final["n"] == 0,
         "note": "Descriptive counts from the dataset's films (1916–2016). Era = ±10 years, runtime = ±20 minutes. Not a model output.",
     }
+    if title is not None:
+        out["excluded_self"] = bool(me.any())      # only present when a title was supplied
+    return out
 
 
 def sensitivity(values: dict, feature: str, points: int = 26) -> dict:

@@ -57,8 +57,7 @@ model and dataset, so budget about 250 MB per worker. Two workers is a sensible 
 | `VITE_API_URL` | Frontend, **build time** | Only for split origins | API origin baked into the bundle. Public by nature: never put a credential in it. |
 | `VITE_API_PROXY` | Dev server and `vite preview` only | No | Where `npm run dev` / `npm run preview` proxy `/api`. Ignored by `vite build`; it has no effect in production. |
 
-There are no secrets in this project: no API keys, tokens, database credentials or passwords exist in the backend or frontend
-(the built bundle was searched; the only `localhost` string in it is inside the React Router library). `.env` files are git-ignored;
+Keep API keys out of source, logs, responses, and frontend build variables. `.env` files are git-ignored;
 `backend/.env.example` and `frontend/.env.example` are templates only.
 
 ## 4. Build and start commands

@@ -7,3 +7,10 @@ __pycache__/
 .pytest_cache/
 .env
 .venv/
+
+# Agent run store (local SQLite)
+.agent_data/
+
+# Local secrets: never commit these. The placeholder .env.example IS tracked.
+.env.*
+!.env.example
