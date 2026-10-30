@@ -19,6 +19,8 @@ from fastapi.responses import JSONResponse, StreamingResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from . import data, insight, overview
+from ..agent import config as agent_config, router as agent_router, store as agent_store
+from ..gemini import router as gemini_router
 from .config import ARTIFACTS, CLASSES, CORS_ORIGINS
 from .model import ModelUnavailable, service
 from .schemas import PredictRequest, SensitivityRequest
@@ -35,11 +37,16 @@ FIELD_LABELS = {
 async def lifespan(_: FastAPI):
     data.movies()  # warm the dataset cache
     service.load()  # model is loaded once; failures surface through /api/health
+    if agent_config.ENABLED:
+        agent_store.fail_stale()  # runs left over from a previous process can never finish
     yield
 
 
 app = FastAPI(title="FRAME / Film Intelligence API", version="1.0.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS, allow_methods=["GET", "POST"], allow_headers=["*"])
+if agent_config.ENABLED:
+    app.include_router(agent_router.router)
+app.include_router(gemini_router.router)    # /api/chat: answers 503 'not configured' until GEMINI_API_KEY and GEMINI_MODEL are set
 
 
 @app.exception_handler(RequestValidationError)

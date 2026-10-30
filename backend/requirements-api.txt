@@ -9,3 +9,7 @@ pandas==3.0.6
 numpy==2.5.4
 scikit-learn==1.9.1
 joblib==1.6.0
+# Used directly by backend/agent (Wikipedia research and the Ollama client); google-genai also pulls it in, but it should not be left to chance.
+httpx==0.28.1
+# Gemini chat assistant (backend/gemini): the official Google Gen AI SDK. Pulls google-auth, requests, tenacity and a few small helpers.
+google-genai==2.34.0

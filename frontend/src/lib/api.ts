@@ -5,11 +5,14 @@ export class ApiError extends Error {
   status: number
   code: string
   fields: FieldProblem[]
-  constructor(status: number, code: string, message: string, fields: FieldProblem[] = []) {
+  /** Seconds from the Retry-After response header, when the server sent one. */
+  retryAfter?: number
+  constructor(status: number, code: string, message: string, fields: FieldProblem[] = [], retryAfter?: number) {
     super(message)
     this.status = status
     this.code = code
     this.fields = fields
+    this.retryAfter = retryAfter
   }
 }
 
@@ -18,7 +21,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   try {
     res = await fetch(`${BASE}${path}`, {
       ...init,
-      headers: { Accept: 'application/json', ...(init?.body ? { 'Content-Type': 'application/json' } : {}) },
+      headers: { Accept: 'application/json', ...(init?.body ? { 'Content-Type': 'application/json' } : {}), ...(init?.headers as Record<string, string> | undefined) },
     })
   } catch {
     throw new ApiError(0, 'network', 'Cannot reach the FRAME API. Check that the backend is running.')
@@ -26,7 +29,8 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   if (!res.ok) {
     let body: { error?: string; message?: string; fields?: FieldProblem[] } = {}
     try { body = await res.json() } catch { /* non-JSON error body */ }
-    throw new ApiError(res.status, body.error ?? 'http_error', body.message ?? `Request failed (${res.status}).`, body.fields)
+    const ra = Number(res.headers.get('Retry-After'))
+    throw new ApiError(res.status, body.error ?? 'http_error', body.message ?? `Request failed (${res.status}).`, body.fields, Number.isFinite(ra) && ra > 0 ? ra : undefined)
   }
   return res.json() as Promise<T>
 }
@@ -43,7 +47,7 @@ function dedupedGet<T>(path: string): Promise<T> {
 
 export const api = {
   get: <T,>(path: string) => dedupedGet<T>(path),
-  post: <T,>(path: string, body: unknown) => request<T>(path, { method: 'POST', body: JSON.stringify(body) }),
+  post: <T,>(path: string, body: unknown, headers?: Record<string, string>) => request<T>(path, { method: 'POST', body: JSON.stringify(body), headers }),
 }
 
 export const qs = (params: Record<string, string | number | null | undefined>) => {
